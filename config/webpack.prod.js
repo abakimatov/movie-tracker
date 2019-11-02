@@ -1,22 +1,22 @@
-const merge = require("webpack-merge");
+const merge = require('webpack-merge');
 
-const common = require("./webpack.common");
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   output: {
-    filename: "[name].[contenthash].js",
-    chunkFilename: "[name].[contenthash].bundle.js"
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].bundle.js'
   },
   optimization: {
-    moduleIds: "hashed",
-    runtimeChunk: "single",
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all"
+          name: 'vendors',
+          chunks: 'all'
         }
       }
     }

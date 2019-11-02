@@ -7,7 +7,9 @@
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js --color",
     "build": "webpack --config ./config/webpack.prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src",
+    "prettier:run": "prettier --write --only-change 'src/**/*.js'"
   },
   "author": "Aleks Bakimatov",
   "license": "ISC",
@@ -18,14 +20,17 @@
     "ie >= 11"
   ],
   "dependencies": {
+    "jest-styled-components": "^6.3.3",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-cleanup-webpack-plugin": "^1.0.2",
     "css-loader": "^3.2.0",
@@ -43,7 +48,6 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.9",
-    "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
     "rm-unused-css": "^1.1.13",
     "style-loader": "^1.0.0",
@@ -52,5 +56,10 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run prettier:run"
+    }
   }
 }
