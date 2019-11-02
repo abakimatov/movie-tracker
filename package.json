@@ -48,6 +48,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "rm-unused-css": "^1.1.13",
     "style-loader": "^1.0.0",
@@ -59,7 +60,26 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run prettier:run"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.{js,jsx}": [
+        "eslint",
+        "prettier --write",
+        "git add"
+      ],
+      "config/**/*.{js}": [
+        "eslint",
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "node_modules",
+      "dist",
+      "package-lock.json"
+    ]
   }
 }
