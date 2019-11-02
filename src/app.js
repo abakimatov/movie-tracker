@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Root = styled.div`
   width: 100%;
-  height: 200px;
+  height: 300px;
 `;
 
 export const App = () => (
