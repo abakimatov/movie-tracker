@@ -1,6 +1,7 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
@@ -12,5 +13,15 @@
     ],
     "import/prefer-default-export": 0,
     "prettier/prettier": ["error"]
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "config/webpack.common.js"
+      },
+      "node": {
+        "moduleDirectory": ["node_modules"]
+      },
+    }
   }
 }

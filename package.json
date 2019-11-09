@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js --color",
     "build": "webpack --config ./config/webpack.prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint ./src",
     "prettier:run": "prettier --write --only-change 'src/**/*.js'"
   },
@@ -20,23 +20,27 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "jest-styled-components": "^6.3.3",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "styled-normalize": "^8.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-cleanup-webpack-plugin": "^1.0.2",
     "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.5.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -48,8 +52,11 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "jest-styled-components": "^6.3.3",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^16.11.0",
     "rm-unused-css": "^1.1.13",
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
@@ -66,12 +73,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx}": [
       "eslint",
-      "prettier --write",
-      "git add"
-    ],
-    "config/**/*.{js}": [
-      "eslint",
-      "prettier --write",
+      "prettier --write --only-change",
       "git add"
     ]
   }

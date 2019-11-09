@@ -1,12 +1,16 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
 
+const appDirectory = fs.realpathSync(process.cwd());
+const resolvePath = relativePath => path.resolve(appDirectory, relativePath);
+
 module.exports = {
-  entry: './src/index.js',
+  entry: resolvePath('src/index.js'),
   output: {
-    path: path.resolve('dist')
+    path: resolvePath('dist')
   },
   module: {
     rules: [
@@ -41,10 +45,17 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      '@ui': resolvePath('src/ui'),
+      '@theme': resolvePath('src/ui/theme'),
+      '@lib': resolvePath('src/lib')
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      template: './public/index.html'
+      template: resolvePath('public/index.html')
     }),
     new CssCleanupPlugin()
   ]
