@@ -3,13 +3,14 @@ const merge = require('webpack-merge');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
+const { resolvePath } = require('./resolvePath');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: resolvePath('dist'),
     port: 3000,
     quiet: true,
     hot: true,

@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-import { GlobalStyle } from '@ui/theme';
+import { GlobalStyle } from '@theme';
+
 import { App } from './app';
 
 ReactDOM.render(
