@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ui": ["src/ui"],
+      "@theme": ["src/ui/theme"],
+      "@features": ["src/features"],
+      "@lib": ["src/lib"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

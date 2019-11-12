@@ -2,29 +2,26 @@ const path = require('path');
 const fs = require('fs');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
 
-const appDirectory = fs.realpathSync(process.cwd());
-const resolvePath = relativePath => path.resolve(appDirectory, relativePath);
+const { resolvePath } = require('./resolvePath');
 
 module.exports = {
-  entry: resolvePath('src/index.js'),
+  entry: resolvePath('src/index.tsx'),
   output: {
     path: resolvePath('dist')
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react']
-            }
           },
-          { loader: 'eslint-loader' }
+          {
+            loader: 'eslint-loader'
+          }
         ]
       },
       {
@@ -46,9 +43,11 @@ module.exports = {
     ]
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@ui': resolvePath('src/ui'),
       '@theme': resolvePath('src/ui/theme'),
+      '@features': resolvePath('src/features'),
       '@lib': resolvePath('src/lib')
     }
   },
@@ -57,6 +56,5 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: resolvePath('public/index.html')
     }),
-    new CssCleanupPlugin()
   ]
 };
